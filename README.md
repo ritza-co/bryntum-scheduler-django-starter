@@ -107,4 +107,4 @@ scheduler.stockholm.css.map
 python manage.py runserver localhost:8000
 ```
 
-The app will be accessible at `http://localhost:8000` and you can perform Gantt CRUD operations
+The app will be accessible at `http://localhost:8000` and you can perform Scheduler CRUD operations
