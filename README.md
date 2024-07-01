@@ -1,38 +1,36 @@
 # Bryntum Scheduler with Django
 
-How to use the Bryntum Scheduler with Django 
+This repository contains the starter code for building a Bryntum Scheduler using Django. The code for the completed app is in the `complete-app` branch. To run this app, clone this repo and switch to the `complete-app` branch before following the steps below.
 
-## Getting Started
+## Setup
 
-Clone the repo and checkout the complete app branch 
-
-Create and activate a virtual environment 
+Create and activate a virtual environment in the root folder:
 
 ```sh
 python -m venv venv
 source venv/bin/activate
 ```
 
-Install Django
+Inside the virtual environment, install Django:
 
 ```sh
 pip install django
 ```
 
-Run migrations 
+Once Django is installed, make and run the migrations:
 
-```shell
+```sh
 python manage.py makemigrations scheduler
 python manage.py migrate 
 ```
 
-Load sample data into SQLite database 
+Then add some sample data to the SQLite database:
 
-```shell
+```sh
 sqlite3 db.sqlite3
 ```
 
-Events
+Events:
 
 ```sql
 INSERT INTO events (id, startDate, endDate, name, durationUnit) 
@@ -49,7 +47,7 @@ VALUES
     (10, '2024-02-19 11:00:00', '2024-02-19 12:45:00', 'Financial Planning', 'day');
 ```
 
-Dependencies 
+Dependencies:
 
 ```sql
 INSERT INTO dependencies (id, `from`, `to`)
@@ -58,7 +56,7 @@ VALUES
   (2, 3, 4);
 ```
 
-Resources 
+Resources:
 
 ```sql
 INSERT INTO resources (id, name)
@@ -71,7 +69,7 @@ VALUES
   (6, 'Leanne');
 ```
 
-Assignments
+Assignments:
 
 ```sql
 INSERT INTO assignments (id, eventId, resourceId)
@@ -88,9 +86,9 @@ VALUES
   (11, 10, 5);
 ```
 
-Download the Bryntum Scheduler distribution folder [here](https://customerzone.bryntum.com/)
+Download the Bryntum Scheduler distribution folder [here](https://customerzone.bryntum.com/).
 
-Copy the following files and folders from the `/build` folder in the Bryntum Scheduler distribution folder and paste them into the `static/bryntum-scheduler` folder:
+If you don't have a license for the Bryntum Scheduler, download the trial version [here](https://bryntum.com/download/?product=scheduler). Copy the following files and folders from the `/build` folder in the Bryntum Scheduler distribution folder and paste them into the `static/bryntum-scheduler` folder:
 
 ```
 fonts
@@ -101,9 +99,11 @@ scheduler.stockholm.css
 scheduler.stockholm.css.map
 ```
 
-## Running the app
+## Running the application
 
-```
+Run the development server with:
+
+```sh
 python manage.py runserver localhost:8000
 ```
 
