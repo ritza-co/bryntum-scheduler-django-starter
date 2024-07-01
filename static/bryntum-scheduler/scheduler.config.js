@@ -3,6 +3,8 @@ import { Scheduler } from './scheduler.module.js';
 const terminalHideDelay = 300;
 const terminalShowDelay = 100;
 
+const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
 const scheduler = new Scheduler({
     appendTo   : document.body,
     viewPreset : 'hourAndDay',
@@ -20,9 +22,16 @@ const scheduler = new Scheduler({
         }
     },
     crudManager : {
-        loadUrl          : '/load',
+        transport : {
+            load : {
+                url : '/load'
+            },
+            sync : {
+                url     : '/sync',
+                headers : { 'X-CSRFToken' : csrftoken }
+            }
+        },
         autoLoad         : true,
-        syncUrl          : '/sync',
         autoSync         : true,
         // This config enables response validation and dumping of found errors to the browser console.
         // It's meant to be used as a development stage helper only so please set it to false for production systems.

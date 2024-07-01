@@ -26,9 +26,18 @@ class Event(models.Model):
 
 
 class Dependency(models.Model):
-    fromEvent = models.ForeignKey('Event', on_delete=models.CASCADE, related_name='from_dependencies',
-                                  db_column='from')
-    toEvent = models.ForeignKey('Event', on_delete=models.CASCADE, related_name='to_dependencies', db_column='to')
+    fromEvent = models.ForeignKey(
+        'Event',
+        on_delete=models.CASCADE,
+        related_name='from_dependencies',
+        db_column='from',
+    )
+    toEvent = models.ForeignKey(
+        'Event',
+        on_delete=models.CASCADE,
+        related_name='to_dependencies',
+        db_column='to',
+    )
     fromSide = models.CharField(max_length=255, default="right", null=True)
     toSide = models.CharField(max_length=255, default="left", null=True)
     cls = models.CharField(max_length=255, null=True, default=None)
@@ -44,15 +53,25 @@ class Resource(models.Model):
     name = models.CharField(max_length=255, null=False)
     eventColor = models.CharField(max_length=255, null=True, default=None)
     readOnly = models.BooleanField(default=False, null=True)
+    expanded = models.BooleanField(default=False, blank=True, null=True)
 
     class Meta:
         db_table = 'resources'
 
 
 class Assignment(models.Model):
-    eventId = models.ForeignKey('Event', on_delete=models.CASCADE, related_name='assignments', db_column='eventId')
-    resourceId = models.ForeignKey('Resource', on_delete=models.CASCADE, related_name='assignments',
-                                 db_column='resourceId')
+    eventId = models.ForeignKey(
+        'Event',
+        on_delete=models.CASCADE,
+        related_name='assignments',
+        db_column='eventId',
+    )
+    resourceId = models.ForeignKey(
+        'Resource',
+        on_delete=models.CASCADE,
+        related_name='assignments',
+        db_column='resourceId',
+    )
 
     class Meta:
         db_table = 'assignments'

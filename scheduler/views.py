@@ -147,7 +147,7 @@ def sync(request):
                     response['dependencies'] = {'rows': rows}
 
             if resources:
-                rows = apply_table_changes("resources", dependencies)
+                rows = apply_table_changes("resources", resources)
                 if rows:
                     response['resources'] = {'rows': rows}
 
